@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red128\green128\blue128;\red43\green43\blue43;\red204\green120\blue50;
+\red169\green183\blue198;\red218\green73\blue57;\red152\green118\blue170;\red104\green151\blue187;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs32 \cf2 \cb3 -- phpMyAdmin SQL Dump\uc0\u8232 -- version 4.4.10\u8232 -- http://www.phpmyadmin.net\u8232 --\u8232 -- Client :  localhost:8889\u8232 -- G\'e9n\'e9r\'e9 le :  Sam 19 D\'e9cembre 2015 \'e0 14:57\u8232 -- Version du serveur :  5.5.42\u8232 -- Version de PHP :  5.6.10\u8232 \u8232 
+\f1\b \cf4 SET 
+\f0\b0 \cf5 SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";\uc0\u8232 
+\f1\b \cf4 SET 
+\f0\b0 \cf5 time_zone = "+00:00";\uc0\u8232 \u8232 \cf2 --\uc0\u8232 -- Base de donn\'e9es :  `pizza`\u8232 --\u8232 \u8232 -- --------------------------------------------------------\u8232 \u8232 --\u8232 -- Structure de la table `commande`\u8232 --\u8232 \u8232 
+\f1\b \cf4 CREATE TABLE 
+\f0\b0 \cf6 `commande` \cf5 (\uc0\u8232   \cf7 `id_cmd` 
+\f1\b \cf4 int
+\f0\b0 \cf5 (\cf8 40\cf5 ) 
+\f1\b \cf4 NOT NULL
+\f0\b0 \cf5 ,\uc0\u8232   \cf7 `jour_livraison` 
+\f1\b \cf4 varchar
+\f0\b0 \cf5 (\cf8 30\cf5 ) 
+\f1\b \cf4 NOT NULL
+\f0\b0 \cf5 ,\uc0\u8232   \cf7 `id_commande_user` 
+\f1\b \cf4 int
+\f0\b0 \cf5 (\cf8 20\cf5 ) 
+\f1\b \cf4 NOT NULL
+\f0\b0 \cf5 ,\uc0\u8232   \cf7 `ville` 
+\f1\b \cf4 varchar
+\f0\b0 \cf5 (\cf8 255\cf5 ) 
+\f1\b \cf4 NOT NULL
+\f0\b0 \cf5 ,\uc0\u8232   \cf7 `heure` 
+\f1\b \cf4 varchar
+\f0\b0 \cf5 (\cf8 30\cf5 ) 
+\f1\b \cf4 NOT NULL
+\f0\b0 \cf5 ,\uc0\u8232   \cf7 `message` 
+\f1\b \cf4 varchar
+\f0\b0 \cf5 (\cf8 255\cf5 ) 
+\f1\b \cf4 NOT NULL\uc0\u8232 
+\f0\b0 \cf5 ) 
+\f1\b \cf4 ENGINE
+\f0\b0 \cf5 =InnoDB 
+\f1\b \cf4 DEFAULT CHARSET
+\f0\b0 \cf5 =latin1;\uc0\u8232 \u8232 \cf2 --\uc0\u8232 -- Index pour les tables export\'e9es\u8232 --\u8232 \u8232 --\u8232 -- Index pour la table `commande`\u8232 --\u8232 
+\f1\b \cf4 ALTER TABLE 
+\f0\b0 \cf6 `commande`\uc0\u8232   
+\f1\b \cf4 ADD PRIMARY KEY 
+\f0\b0 \cf5 (\cf7 `id_cmd`\cf5 ),\uc0\u8232   
+\f1\b \cf4 ADD KEY 
+\f0\b0 \cf5 `id_commande_user` (\cf7 `id_commande_user`\cf5 );\uc0\u8232 \u8232 \cf2 --\uc0\u8232 -- AUTO_INCREMENT pour les tables export\'e9es\u8232 --\u8232 \u8232 --\u8232 -- AUTO_INCREMENT pour la table `commande`\u8232 --\u8232 
+\f1\b \cf4 ALTER TABLE 
+\f0\b0 \cf6 `commande`\uc0\u8232   
+\f1\b \cf4 MODIFY 
+\f0\b0 \cf7 `id_cmd` 
+\f1\b \cf4 int
+\f0\b0 \cf5 (\cf8 40\cf5 ) 
+\f1\b \cf4 NOT NULL AUTO_INCREMENT
+\f0\b0 \cf5 ;\uc0\u8232 \cf2 --\uc0\u8232 -- Contraintes pour les tables export\'e9es\u8232 --\u8232 \u8232 --\u8232 -- Contraintes pour la table `commande`\u8232 --\u8232 
+\f1\b \cf4 ALTER TABLE 
+\f0\b0 \cf6 `commande`\uc0\u8232   
+\f1\b \cf4 ADD CONSTRAINT 
+\f0\b0 \cf5 `commande_ibfk_1` 
+\f1\b \cf4 FOREIGN KEY 
+\f0\b0 \cf5 (\cf7 `id_commande_user`\cf5 ) 
+\f1\b \cf4 REFERENCES 
+\f0\b0 \cf5 `users` (`user_id`) 
+\f1\b \cf4 ON DELETE CASCADE ON UPDATE CASCADE
+\f0\b0 \cf5 ;\uc0\u8232 \
+}
