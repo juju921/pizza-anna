@@ -2,7 +2,6 @@
     <div class="wrapper">
         <h1>Détails commande</h1>
 
-
         <?php if ($this->session->flashdata('log')): ?>
             <div class="alert alert-success"><?php echo $this->session->flashdata('log'); ?></div>
         <?php endif; ?>
@@ -17,7 +16,7 @@
         <div class="control-group">
             <label class="control-label">Civilité : &nbsp; </label>
             <label class="checkbox inline" for="m">
-                <input type="checkbox" id="m" value="Lundi" name="jour_livraison"> Lundi
+                <input type="checkbox" id="m" value="Lundi" name="ville"> Lundi
             </label>
             <label class="checkbox inline" for="mme">
                 <input type="checkbox" id="mme" value="Mardi" name="jour_livraison"> Mardi

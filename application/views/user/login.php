@@ -11,6 +11,8 @@
         <?php echo form_open('user/login', array('class' => 'form-horizontal')); ?>
 
         <div class="control-group">
+            <p>Vous Avez un compte</p>
+
             <label class="control-label">Email</label>
             <div class="controls">
                 <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
@@ -40,6 +42,7 @@
                 <?php echo form_open('user/inscriptions', array('class' => 'form-horizontal')); ?>
 
                 <div class="control-group">
+                    <p>S'inscrire</p>
                     <label class="control-label">Email</label>
                     <div class="controls">
                         <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
@@ -49,6 +52,7 @@
 
 
                 <button type="submit" class="btn">Connexion</button>
+                <p><a href="">Payer sans ce créer de compte</a></p>
 
 
                 <?php echo form_close(); ?>

@@ -161,4 +161,51 @@ class Article extends CI_Controller {
     }
 
 
+    public function detailivraison(){
+
+        if ($this->sitemodel->is_logged()) {
+
+        }
+
+        if ($this->sitemodel->is_connected()) {
+
+        }
+
+
+        $this->form_validation->set_rules('jour_livraison', 'jour_livraison', 'required');
+        $this->form_validation->set_rules('ville', 'ville', 'trim|required');
+        $this->form_validation->set_rules('heure', 'heure', 'trim|required');
+        $this->form_validation->set_rules('message', 'message', 'trim|required');
+
+
+        if ($this->form_validation->run()) {
+            $user = array(
+                'id_commande_user' =>  $this->user->user_id,
+                'jour_livraison'=>$this->input->post('jour_livraison'),
+                'ville'       => $this->input->post('ville'),
+                'heure'    => $this->input->post('heure'),
+                'message' => $this->input->post('message'),
+
+            );
+
+
+            if ($this->sitemodel->signupinfo($user)) {
+                $this->session->set_flashdata('success', 'votre commande à bien été enregistré');
+                redirect(current_url());
+                exit;
+            } else {
+                throw new Exception('Une erreur est survenue, réessayez svp');
+            }
+        }
+
+        $data = array(
+
+            'test'    => "bonjour",
+            'content' => 'article/detailivraison',
+        );
+        $this->load->view('template/content', $data);
+
+    }
+
+
 }
