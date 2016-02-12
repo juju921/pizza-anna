@@ -28,7 +28,11 @@
 <script src="<?php echo base_url();?>js/jquery-1.9.0.min.js"></script>
 <script src="<?php echo base_url();?>js/custom.js"></script>
 <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
- 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="<?php echo base_url();?>node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
+
+
+
 
 
 </body>

@@ -3,15 +3,18 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Article extends CI_Controller {
+class Article extends CI_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->user = ($this->sitemodel->is_logged()) ? $this->sitemodel->get_user($this->session->userdata('prenom')) : false;
 
     }
 
-    public function index() {
+    public function index()
+    {
 
         $data = array(
             'title' => "bienvenue",
@@ -21,12 +24,14 @@ class Article extends CI_Controller {
         $this->load->view('template/content', $data);
     }
 
-    public function payer() {
-        
-        
-         if(!$this->sitemodel->is_logged()){
-          redirect('user/login');exit;
-          } 
+    public function payer()
+    {
+
+
+        if (!$this->sitemodel->is_logged()) {
+            redirect('user/login');
+            exit;
+        }
 
         if (!$this->cart->contents()) {
             redirect();
@@ -97,58 +102,56 @@ class Article extends CI_Controller {
 
     function retour()
     {
-        if(empty($_GET)){redirect();exit;}
+        if (empty($_GET)) {
+            redirect();
+            exit;
+        }
 
         $this->load->library('paypal');
 
-        if(!empty($_GET['token']))
-        {
-            $params = array('TOKEN'=>htmlentities($_GET['token'], ENT_QUOTES));
+        if (!empty($_GET['token'])) {
+            $params = array('TOKEN' => htmlentities($_GET['token'], ENT_QUOTES));
 
             $paypal = new Paypal();
-            $response = $paypal->request('GetExpressCheckoutDetails',$params);
-            if(is_array($response) && $response['ACK']=='Success')
-            {
+            $response = $paypal->request('GetExpressCheckoutDetails', $params);
+            if (is_array($response) && $response['ACK'] == 'Success') {
                 $token = htmlentities($response['TOKEN']);
                 $user = $this->sitemodel->get_user($this->sitemodel->get_order($token)->order_user_id);
 
                 $payment_params = array(
-                    'PAYMENTREQUEST_0_PAYMENTACTIO'=>'Sale',
-                    'PayerID'=>htmlentities($_GET['PayerID'], ENT_QUOTES),
-                    'PAYMENTREQUEST_0_AMT'=>$response['AMT'],
-                    'PAYMENTREQUEST_0_CURRENCYCODE'=> 'EUR'
+                    'PAYMENTREQUEST_0_PAYMENTACTIO' => 'Sale',
+                    'PayerID' => htmlentities($_GET['PayerID'], ENT_QUOTES),
+                    'PAYMENTREQUEST_0_AMT' => $response['AMT'],
+                    'PAYMENTREQUEST_0_CURRENCYCODE' => 'EUR'
                 );
 
                 $params += $payment_params;
                 $paypal = new Paypal();
-                $response = $paypal->request('DoExpressCheckoutPayment',$params);
+                $response = $paypal->request('DoExpressCheckoutPayment', $params);
 
-                if(is_array($response) && $response['ACK']=='Success')
-                {
+                if (is_array($response) && $response['ACK'] == 'Success') {
                     $token = htmlentities($response['TOKEN']);
                     $order = array(
-                        'order_paypal_infos'=>serialize($response),
-                        'order_valid'=>true
+                        'order_paypal_infos' => serialize($response),
+                        'order_valid' => true
                     );
-                    if($this->sitemodel->valid_order($token,$order))
-                    {
+                    if ($this->sitemodel->valid_order($token, $order)) {
                         $sales = $this->sitemodel->get_sales_order($token);
-                        foreach($sales as $s)
-                        {
-                            $data = array('sale_valid'=>true);
-                            $this->sitemodel->update_sales_order($token,$data);
+                        foreach ($sales as $s) {
+                            $data = array('sale_valid' => true);
+                            $this->sitemodel->update_sales_order($token, $data);
                         }
 
                         $amount = htmlentities($response['PAYMENTINFO_0_AMT']);
 
-                        $this->email->from('julien.garretb@gmail.com','Shop');
+                        $this->email->from('julien.garretb@gmail.com', 'Shop');
                         $this->email->to($user->email);
                         $this->email->subject('Vos achats sur Shop');
-                        $this->email->message('<h2>Bonjour '.$user->firstname.', </h2>
-							<div>Commande n° <strong>'.$token.'</strong></div>
-							<div>Montant de la commande :<strong>'.$amount.'</strong></div>
+                        $this->email->message('<h2>Bonjour ' . $user->firstname . ', </h2>
+							<div>Commande n° <strong>' . $token . '</strong></div>
+							<div>Montant de la commande :<strong>' . $amount . '</strong></div>
 							<p>Votre commande sera expédiée rapidement bla bla bla<br>
-							Vous pouvez consulter '.anchor('user','la liste de vos achats').' dans votre epace personnel et imprimer la facture.</p>');
+							Vous pouvez consulter ' . anchor('user', 'la liste de vos achats') . ' dans votre epace personnel et imprimer la facture.</p>');
 
                         $this->email->send();
 
@@ -161,7 +164,8 @@ class Article extends CI_Controller {
     }
 
 
-    public function detailivraison(){
+    public function detailivraison()
+    {
 
         if ($this->sitemodel->is_logged()) {
 
@@ -171,23 +175,19 @@ class Article extends CI_Controller {
 
         }
 
-
         $this->form_validation->set_rules('jour_livraison', 'jour_livraison', 'required');
         $this->form_validation->set_rules('ville', 'ville', 'trim|required');
         $this->form_validation->set_rules('heure', 'heure', 'trim|required');
         $this->form_validation->set_rules('message', 'message', 'trim|required');
 
-
         if ($this->form_validation->run()) {
             $user = array(
-                'id_commande_user' =>  $this->user->user_id,
-                'jour_livraison'=>$this->input->post('jour_livraison'),
-                'ville'       => $this->input->post('ville'),
-                'heure'    => $this->input->post('heure'),
+                'id_commande_user' => $this->user->user_id,
+                'jour_livraison' => $this->input->post('jour_livraison'),
+                'ville' => $this->input->post('ville'),
+                'heure' => $this->input->post('heure'),
                 'message' => $this->input->post('message'),
-
             );
-
 
             if ($this->sitemodel->signupinfo($user)) {
                 $this->session->set_flashdata('success', 'votre commande à bien été enregistré');
@@ -199,9 +199,25 @@ class Article extends CI_Controller {
         }
 
         $data = array(
-
-            'test'    => "bonjour",
+            'test' => "bonjour",
             'content' => 'article/detailivraison',
+        );
+        $this->load->view('template/content', $data);
+
+    }
+
+
+    public function moyendepayent()
+    {
+
+        if (!$this->sitemodel->is_logged()) {
+            redirect('user/login');
+            exit;
+        }
+
+
+        $data = array(
+            'content' => 'article/moyendepayent',
         );
         $this->load->view('template/content', $data);
 

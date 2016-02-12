@@ -10,7 +10,7 @@
         <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' >
         <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -103,12 +103,12 @@
                                 
                             <a href="<?php echo site_url('user/logout'); ?>">Logout</a>
                         <?php endif; ?>
-                            <?php if (!$this->sitemodel->is_connected()): ?>
-                               ok
-                            <?php else: ?>
+                            <?php //if (!$this->sitemodel->is_connected()): ?>
 
-                           go
-                            <?php endif; ?>
+                            <?php //else: ?>
+
+
+                            <?php //endif; ?>
                         </p>
 
                     </div>

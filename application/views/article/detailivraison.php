@@ -12,7 +12,7 @@
         <?php if (validation_errors()): ?>
             <div class="alert alert-error"><?php echo validation_errors('<p>', '</p>'); ?></div>
         <?php endif; ?>
-        <?php echo form_open('user/detailivraison', array('class' => 'form-horizontal')); ?>
+        <?php echo form_open('article/moyendepayent', array('class' => 'form-horizontal')); ?>
         <div class="control-group">
             <label class="control-label">Civilité : &nbsp; </label>
             <label class="checkbox inline" for="m">
