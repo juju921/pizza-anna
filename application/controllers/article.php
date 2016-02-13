@@ -223,5 +223,48 @@ class Article extends CI_Controller
 
     }
 
+    public function payersanscompte()
+    {
+
+
+        $this->load->library('paypal');
+        $params = array(
+            'RETURNURL' => site_url('article/retour'),
+            'CANCELURL' => site_url('article/cancel')
+        );
+
+        $items = array();
+
+        $i = 0;
+        foreach ($this->cart->contents() as $cart) {
+            $items['L_PAYMENTREQUEST_0_NAME' . $i] = $cart['name'];
+            $items['L_PAYMENTREQUEST_0_NUMBER' . $i] = $cart['id'];
+            $items['L_PAYMENTREQUEST_0_DESC' . $i] = $cart['name'];
+            $items['L_PAYMENTREQUEST_0_AMT' . $i] = $cart['price'];
+            $items['L_PAYMENTREQUEST_0_QTY' . $i] = $cart['qty'];
+            $i++;
+        }
+
+        $items['PAYMENTREQUEST_0_AMT'] = $this->cart->total();
+        $items['PAYMENTREQUEST_0_CURRENCYCODE'] = 'EUR';
+
+        $params += $items;
+        $paypal = new Paypal();
+        $response = $paypal->request('SetExpressCheckout', $params);
+
+        if (!empty($response['TOKEN']) && $response['ACK'] == 'Success') {
+            $token = htmlentities($response['TOKEN']);
+
+
+
+
+
+                header('Location: https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token) . '&useraction=commit');
+
+        } else {
+            echo 'Une erreur s\'est produite : <br> ' . $response['L_LONGMESSAGE0'];
+        }
+    }
+
 
 }

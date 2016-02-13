@@ -2,7 +2,12 @@
 
     <div class="wrapper">
         <div class="row-fluid">
-            <div class="span6">
+            <div class="span3">
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cumque distinctio esse labore maxime sequi voluptatibus. Aut delectus eum ex excepturi in, nemo quae quisquam reiciendis soluta voluptatibus! Cumque, doloremque.</p>
+
+            </div>
+            <div class="span3">
 
                 <?php if($this->session->flashdata('error')):?>
                     <div class="alert alert-error"><?php echo $this->session->flashdata('error');?></div>
@@ -34,7 +39,7 @@
 
 
             </div>
-            <div class="span6">
+            <div class="span3">
 
         <?php if($this->session->flashdata('success')):?>
             <div class="alert alert-success"><?php echo $this->session->flashdata('success');?></div>
