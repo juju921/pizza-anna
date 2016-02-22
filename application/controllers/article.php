@@ -64,6 +64,9 @@ class Article extends CI_Controller
         $response = $paypal->request('SetExpressCheckout', $params);
 
         if (!empty($response['TOKEN']) && $response['ACK'] == 'Success') {
+
+
+
             $token = htmlentities($response['TOKEN']);
 
             $order = array(
@@ -237,7 +240,7 @@ class Article extends CI_Controller
 
         $i = 0;
         foreach ($this->cart->contents() as $cart) {
-            $items['L_PAYMENTREQUEST_0_NAME' . $i] = $cart['name'];
+            //$items['L_PAYMENTREQUEST_0_NAME' . $i] = $cart['name'];
             $items['L_PAYMENTREQUEST_0_NUMBER' . $i] = $cart['id'];
             $items['L_PAYMENTREQUEST_0_DESC' . $i] = $cart['name'];
             $items['L_PAYMENTREQUEST_0_AMT' . $i] = $cart['price'];
@@ -254,11 +257,6 @@ class Article extends CI_Controller
 
         if (!empty($response['TOKEN']) && $response['ACK'] == 'Success') {
             $token = htmlentities($response['TOKEN']);
-
-
-
-
-
                 header('Location: https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token) . '&useraction=commit');
 
         } else {
