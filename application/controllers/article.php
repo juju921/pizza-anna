@@ -248,6 +248,45 @@ class Article extends CI_Controller
             $i++;
         }
 
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => '465',
+            'smtp_user' => 'julien.garretb@gmail.com',
+            'smtp_pass' => 'azertyui',
+            'smtp_timeout' => '4',
+            'mailtype'  => 'html',
+            'charset'   => 'iso-8859-1'
+        );
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+
+        $this->email->from('julien.garretb@gmail.com', 'julien garret');
+        $data = array(
+            'julien garret'=> 'julien garret'
+        );
+        $this->email->to('julien.garretb@gmail.com');  // replace it with receiver mail id
+        $this->email->subject('<h2>Bonjour ' . $cart->name . ', </h2>
+
+							<div>Montant de la commande :<strong>' . $cart->total() . '</strong></div>
+							<p>Votre commande sera expédiée rapidement bla bla bla<br>
+							Vous pouvez consulter ' . anchor('user', 'la liste de vos achats') . ' dans votre epace personnel et imprimer la facture.</p>'); // replace it with relevant subject
+
+
+        $this->email->send();
+        if($this->email->send())
+        {
+            echo 'Email sent.';
+        }
+        else
+        {
+            show_error($this->email->print_debugger());
+        }
+
+
+
+
+
         $items['PAYMENTREQUEST_0_AMT'] = $this->cart->total();
         $items['PAYMENTREQUEST_0_CURRENCYCODE'] = 'EUR';
 
@@ -255,13 +294,22 @@ class Article extends CI_Controller
         $paypal = new Paypal();
         $response = $paypal->request('SetExpressCheckout', $params);
 
+
+
+
+
         if (!empty($response['TOKEN']) && $response['ACK'] == 'Success') {
             $token = htmlentities($response['TOKEN']);
                 header('Location: https://www.paypal.com/webscr?cmd=_express-checkout&token=' . urlencode($token) . '&useraction=commit');
 
+
+
+
         } else {
             echo 'Une erreur s\'est produite : <br> ' . $response['L_LONGMESSAGE0'];
         }
+
+
     }
 
 

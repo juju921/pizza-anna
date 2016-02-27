@@ -88,6 +88,9 @@ class User extends CI_Controller
             exit;
         }
 
+
+
+
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
         $this->form_validation->set_rules('mdp', 'mdp', 'trim|required');
 
