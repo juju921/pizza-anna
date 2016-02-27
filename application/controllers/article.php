@@ -251,7 +251,7 @@ class Article extends CI_Controller
         $config = Array(
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_port' => '465',
+            'smtp_port' => 465,
             'smtp_user' => 'julien.garretb@gmail.com',
             'smtp_pass' => 'azertyui',
             'smtp_timeout' => '4',
