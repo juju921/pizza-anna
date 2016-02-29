@@ -74,9 +74,10 @@
 
     </head>
 
-    <body>
+    <body ng-app="sampleapp">
 
-        <div id="container">
+        <div id="container" ng-controller="MainCtrl as ctrl">
+
             <header>
                 <div class="header">
 
@@ -143,6 +144,7 @@
                                             <li><a href="<?php echo site_url('lacarte') ?>">la carte</a></li>
                                             <li class="dropdown" id="rouge">
                                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">commander <b class="caret"></b></a>
+
                                                 <ul class="dropdown-menu">
                                                     <li><a href="<?php echo site_url('commander') ?>">en ligne</a></li>
                                                     <li><a href="<?php echo site_url('ounoustrouver') ?>">par téléphone</a></li>
@@ -161,6 +163,26 @@
                     </div>
 
 
+                </div>
+                {{fruit}}
+
+
+                <div class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Yes or No?</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>It's your call...</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" ng-click="close(false)" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="button" ng-click="close(true)" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </header>
