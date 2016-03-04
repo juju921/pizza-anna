@@ -1,16 +1,15 @@
-﻿
-<footer>
+﻿<footer>
 
-	<div id="footer">
-  <p><span>Remerciements à : José, Cindy, Sarah et Julien pour la vie du site internet depuis sa création
+    <div id="footer">
+        <p><span>Remerciements à : José, Cindy, Sarah et Julien pour la vie du site internet depuis sa création
   
   
  Copyright 2013 - Tous Droits Réservés.</span></p>
 
 
-  <img src="<?php echo base_url();?>img/patonetartisant.png" id="patonart">
-  
-	</div>
+        <img src="<?php echo base_url(); ?>img/patonetartisant.png" id="patonart">
+
+    </div>
 
 
 </footer>
@@ -19,32 +18,18 @@
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-  <script src="<?php echo base_url();?>js/jquery.backstretch.js"></script>
-	<script>
-	     $.backstretch(["<?php echo base_url();?>img/bg.jpg"]);
-  </script>
-
-  
-<script src="<?php echo base_url();?>js/jquery-1.9.0.min.js"></script>
-<script src="<?php echo base_url();?>js/custom.js"></script>
-<script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="<?php echo base_url();?>node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
+<script src="<?php echo base_url(); ?>js/jquery.backstretch.js"></script>
 <script>
-    var app = angular.module('sampleapp', ['angularModalService']);
-
-    app.controller('MainCtrl', ['$scope', function ($scope) {
-        $scope.fruit = "pomme";
-
-    }]);
-
-
-
-
-
+    $.backstretch(["<?php echo base_url();?>img/bg.jpg"]);
 </script>
 
 
+<script src="<?php echo base_url(); ?>js/jquery-1.9.0.min.js"></script>
+<script src="<?php echo base_url(); ?>js/custom.js"></script>
+<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="<?php echo base_url(); ?>node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
+<script src="<?php echo base_url(); ?>js/app.js"></script>
 
 
 </body>
