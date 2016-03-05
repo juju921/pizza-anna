@@ -93,6 +93,7 @@ class Site extends Ci_Controller{
 			);
 		$this->cart->insert($data);
 		redirect('commander');
+
 	}
 
 
