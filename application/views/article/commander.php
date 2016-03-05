@@ -2,14 +2,17 @@
 
 	<div class="wrapper">
 
-
+        <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash);"></flash-message>
 
         <?php if($pizza):?>
 
 		<h1>Commandez votre pizza en ligne !</h1>
 		<div class="row-fluid">
 
-			<div class="span6">
+
+
+
+            <div class="span6">
 				<?php foreach($pizza as $a):?>
 
 				<div class="pizzas">
@@ -38,7 +41,7 @@
 
   <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
 </form>
-<a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>" ng-click="addAlert(1, 'info')"><i class="icon icon-shoppint-cart"></i>Commander</a>
+<a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>" ng-click="success()" ><i class="icon icon-shoppint-cart"></i>Commander</a>
 <div class="clearfix"></div>
 </div >
 

@@ -11,6 +11,7 @@
         <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="<?php echo base_url(); ?>node_modules/angular-flash-alert/dist/angular-flash.min.css" />
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -51,13 +52,13 @@
                     return false;
                 });
 
-                $(" #Samedi").click(function () {
+                $("#Samedi").click(function () {
                     $("#Samedis").slideToggle("slow");
                     $(this).hide();
                     return false;
                 });
 
-                $(" #Dimanche").click(function () {
+                $("#Dimanche").click(function () {
                     $("#Dimanches").slideToggle("slow");
                     $(this).hide();
                     return false;
@@ -78,14 +79,9 @@
 
         <div id="container" ng-controller="MainCtrl as ctrl">
 
+
             <header>
 
-
-                    <notification ng-model="message"></notification>
-
-                    <div ng-repeat="alert in alerts">
-                        <notification ng-model="alert"></notification>
-                    </div>
 
 
 
@@ -175,7 +171,7 @@
 
 
                 </div>
-                {{fruit}}
+
 
 
 

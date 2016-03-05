@@ -1,42 +1,18 @@
-var app = angular.module('sampleapp', ['angularModalService']);
-
-app.directive('notification', function($timeout){
-    return {
-        restrict: 'E',
-        replace: true,
-        scope: {
-            ngModel: '='
-        },
-        template: '<div class="alert fade" bs-alert="ngModel"></div>',
-        link: function(scope, element, attrs) {
-            $timeout(function(){
-                element.hide();
-            }, 3000);
-        }
-    }
-});
+var app = angular.module('sampleapp', ['angularModalService','ngFlash', 'ngAnimate']);
 
 
-app.controller('MainCtrl', ['$scope', function ($scope) {
-    $scope.fruit = "pomme";
 
-    $scope.message = {
-        "type": "info",
-        "title": "Success!",
-        "content": "alert directive is working pretty well with 3 sec timeout"
+
+app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout', function ($rootScope, $scope, Flash, $timeout) {
+
+
+
+
+        $scope.success = function() {
+        var message = '<strong>votre pizza</strong> à été ajouté au patnier';
+        Flash.create('success', message);
     };
 
-    $scope.alerts = [];
-    $scope.addAlert = function(index, type) {
-        $scope.alerts.push(
-            {
-                "type": type,
-                "title": "Success!" + index,
-                "content": "alert "  + index + " directive is working pretty well with 3 sec timeout"
-            }
-        )
-
-    }
 
 }]);
 
