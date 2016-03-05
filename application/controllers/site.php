@@ -64,8 +64,6 @@ class Site extends Ci_Controller{
 	}
 
 
-
-
 	public function panier()
 	{
 		$data = array(
@@ -78,9 +76,6 @@ class Site extends Ci_Controller{
 		$this->load->view('template/content',$data);
 	}
 
-	
-	
-
 
 	public function add($id=null)
 	{
@@ -90,6 +85,7 @@ class Site extends Ci_Controller{
 		
 		$pizza = $this->sitemodel->get_one($id);
 
+
 		$data = array(
 			'id'=>$pizza->id,
 			'qty'=>1,
@@ -97,7 +93,7 @@ class Site extends Ci_Controller{
 			'name'=>$pizza->noms
 			);
 		$this->cart->insert($data);
-		redirect('panier');exit;
+		redirect('commander');
 	}
 
 

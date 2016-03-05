@@ -1,13 +1,10 @@
-
-
-
-
 <div id="body">
 
-	<div class="wrapper"> 
-		
+	<div class="wrapper">
 
-		<?php if($pizza):?>
+
+
+        <?php if($pizza):?>
 
 		<h1>Commandez votre pizza en ligne !</h1>
 		<div class="row-fluid">
@@ -24,7 +21,7 @@
 					<p><?php echo $a->ingredients ; ?></p>
 
 
-					<form class="navbar-form pull-right" action="<?php echo site_url('site/add/'.$a->id)?>" method="post" >
+					<form class="navbar-form pull-right" action="<?php echo site_url('site/add/'.$a->id)?>" method="post"  >
 						<input type="hidden" name="idpiz" value="<?php echo $a->id; ?>">
 
 						 <!-- <label class="control-label">Quantité</label>
@@ -41,7 +38,7 @@
 
   <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
 </form>
-<a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>"><i class="icon icon-shoppint-cart"></i>Commander</a>
+<a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>" ng-click="addAlert(1, 'info')"><i class="icon icon-shoppint-cart"></i>Commander</a>
 <div class="clearfix"></div>
 </div >
 
