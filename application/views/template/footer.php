@@ -11,7 +11,7 @@
 
     </div>
 
-
+    <?php echo site_url('site/ajax_load_data'); ?>
 </footer>
 
 
@@ -32,7 +32,30 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-flash-alert/dist/angular-flash.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
+<script>
 
+    var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate']);
+
+
+    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http', function ($rootScope, $scope, Flash, $timeout,$http) {
+
+        $scope.success = function () {
+            var message = '<strong>votre pizza</strong> ' +
+                pizza.noms+   'à été ajouté au patnier';
+            Flash.create('success', message);
+        };
+
+        $scope.pizzas = [];
+        $http.get('<?php echo site_url('site/get_list');?>').success(function($data){ $scope.pizzas=$data;  });
+
+
+
+
+    }]);
+
+
+
+</script>
 
 </body>
 </html>

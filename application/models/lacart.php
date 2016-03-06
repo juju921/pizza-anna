@@ -5,6 +5,9 @@ class lacart extends CI_Model {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->database();
+		$this->table_name = 'pizza';
+
 	}
 
 function get_all()
@@ -32,6 +35,11 @@ function get_all()
 		{
 			return $q->row();
 		}
+	}
+
+
+	public function getAllPizza() {
+		return $this->db->from($this->table_name)->order_by('numero', 'ASC')->get()->result_array();
 	}
 
 	

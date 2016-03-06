@@ -7,7 +7,6 @@ class Site extends Ci_Controller{
 	function _contruct()
 	{
 
-
 		parent::_contruct();
 		$this->view_folder = strtolower(__CLASS__).'/';
 
@@ -145,8 +144,27 @@ class Site extends Ci_Controller{
 		redirect('panier');
 	}
 
+public function ajax_load_data(){
 
+	$result->$this->db->get('pizza')->result();
+	$arr_data = array();
+	$i = 0;
+	foreach($result as $r){
+		$arr_data[$i]['noms']=$r->noms;
+		$arr_data[$i]['ingredients']=$r->ingredients;
+		$arr_data[$i]['prix']=$r->prix;
+		$arr_data[$i]['numero']=$r->numero;
+		$arr_data[$i]['visible']=$r->visible;
+		$i++;
+	}
 
+}
+
+public function get_list() {
+		$this->load->model(array('lacart'));
+		$data = $this->lacart->getAllPizza();
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
 
 
 

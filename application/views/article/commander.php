@@ -13,9 +13,11 @@
 
 
             <div class="span6">
+
+
 				<?php foreach($pizza as $a):?>
 
-				<div class="pizzas">
+				<div class="pizzas" >
 
 					<h2><?php echo $a->noms ;?></h2>
 					<span class="prix"><?php echo number_format($a->prix,2, ',', ' '); ?>€</span>
@@ -43,7 +45,7 @@
 </form>
 <a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>" ng-click="success()" ><i class="icon icon-shoppint-cart"></i>Commander</a>
 <div class="clearfix"></div>
-</div >
+</div>
 
 
 
