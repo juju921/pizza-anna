@@ -11,7 +11,6 @@
 
     </div>
 
-    <?php echo site_url('site/ajax_load_data'); ?>
 </footer>
 
 
@@ -41,12 +40,20 @@
 
         $scope.success = function () {
             var message = '<strong>votre pizza</strong> ' +
-                pizza.noms+   'à été ajouté au patnier';
+                  'à été ajouté au patnier';
             Flash.create('success', message);
         };
 
         $scope.pizzas = [];
-        $http.get('<?php echo site_url('site/get_list');?>').success(function($data){ $scope.pizzas=$data;  });
+        $http.get('<?php echo site_url('site/get_list');?>').success(function($data){
+            $scope.pizzas=$data;
+        });
+
+        $scope.popupmessages = function (piz) {
+            var message = '<strong>votre pizza</strong> ' + piz +
+                ' à été ajouté au patnier';
+            Flash.create('success', message);
+        }
 
 
 

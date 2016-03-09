@@ -1,87 +1,71 @@
 <div id="body">
 
-	<div class="wrapper">
+    <div class="wrapper">
 
         <flash-message duration="5000" show-close="true" on-dismiss="myCallback(flash);"></flash-message>
 
-        <?php if($pizza):?>
+        <?php if ($pizza): ?>
 
-		<h1>Commandez votre pizza en ligne !</h1>
-		<div class="row-fluid">
-
-
+            <h1>Commandez votre pizza en ligne !</h1>
+            <div class="row-fluid" ng-repeat="pizza in pizzas">
 
 
-            <div class="span6">
+                <div class="span6">
 
 
-				<?php foreach($pizza as $a):?>
+                    <?php foreach ($pizza as $a): ?>
 
-				<div class="pizzas" >
+                        <div class="pizzas">
 
-					<h2><?php echo $a->noms ;?></h2>
-					<span class="prix"><?php echo number_format($a->prix,2, ',', ' '); ?>€</span>
-
-
-					<p><?php echo $a->ingredients ; ?></p>
+                            <h2><?php echo $a->noms; ?></h2>
+                            <span class="prix"><?php echo number_format($a->prix, 2, ',', ' '); ?>€</span>
 
 
-					<form class="navbar-form pull-right" action="<?php echo site_url('site/add/'.$a->id)?>" method="post"  >
-						<input type="hidden" name="idpiz" value="<?php echo $a->id; ?>">
-
-						 <!-- <label class="control-label">Quantité</label>
-				
-<select name="quantite">
-        <option value="1" selected="selected" >1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>-->
+                            <p><?php echo $a->ingredients; ?></p>
 
 
+                            <form class="navbar-form pull-right" action="<?php echo site_url('site/add/' . $a->id) ?>"
+                                  method="post">
+                                <input type="hidden" name="idpiz" value="<?php echo $a->id; ?>">
+
+                                <!-- <label class="control-label">Quantité</label>
+
+       <select name="quantite">
+               <option value="1" selected="selected" >1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+           </select>-->
 
 
-  <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
-</form>
-<a class="btn btn-commande" href="<?php echo site_url('site/add/'.$a->id)?>" ng-click="success()" ><i class="icon icon-shoppint-cart"></i>Commander</a>
-<div class="clearfix"></div>
-</div>
+                                <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
+                            </form>
+                            <a class="btn btn-commande" href="<?php echo site_url('site/add/' . $a->id) ?>"
+                               ng-click="popupmessages(pizza.noms)"><i class="icon icon-shoppint-cart"></i>Commander</a>
+                            <div class="clearfix"></div>
+                        </div>
 
 
+                    <?php endforeach; ?>
+                </div>
+                <div class="span6">
 
 
+                    <div id="commande">
 
 
+                        <div class="rubandcommande"><h2>Votre Commande</h2></div>
 
 
+                    </div>
 
 
-
-<?php endforeach;?>
-</div>
-<div class="span6" >
+                </div>
 
 
-	<div id="commande">
+            </div>
+        <?php endif; ?>
 
-
-
-		<div class="rubandcommande"><h2>Votre Commande</h2> </div>
-
-
-
-
-	</div>
-
-
-
-
-</div>
-
-
-</div>
-<?php endif;?>
-
-<div class="clearfix"></div>
-</div>
+        <div class="clearfix"></div>
+    </div>
 </div>
