@@ -7,30 +7,29 @@
         <?php if ($pizza): ?>
 
             <h1>Commandez votre pizza en ligne !</h1>
-            <div class="row-fluid" ng-repeat="pizza in pizzas">
+            <div class="row-fluid"  >
+
+                <div class="span6"  >
 
 
-                <div class="span6">
+
+                        <div class="pizzas" ng-repeat="pizza in pizzas">
+
+                            <h2>{{pizza.noms}}<?php //echo $a->noms; ?></h2>
+                            <span class="prix">{{pizza.prix}}<?php //echo number_format($a->prix, 2, ',', ' '); ?>
+                                €</span>
 
 
-                    <?php foreach ($pizza as $a): ?>
+                            <p>{{pizza.ingredients}}<?php //echo $a->ingredients; ?></p>
 
-                        <div class="pizzas">
-
-                            <h2><?php echo $a->noms; ?></h2>
-                            <span class="prix"><?php echo number_format($a->prix, 2, ',', ' '); ?>€</span>
-
-
-                            <p><?php echo $a->ingredients; ?></p>
-
-
-                            <form class="navbar-form pull-right" action="<?php echo site_url('site/add/' . $a->id) ?>"
-                                  method="post">
-                                <input type="hidden" name="idpiz" value="<?php echo $a->id; ?>">
+                            <?php //foreach ($pizza as $a): ?>
+                            <form class="navbar-form pull-right" action=""
+                                  method="post" >
+                                <input type="hidden" name="idpiz" value="{{pizza.id}}">
 
                                 <!-- <label class="control-label">Quantité</label>
 
-       <select name="quantite">
+           <select name="quantite">
                <option value="1" selected="selected" >1</option>
                <option value="2">2</option>
                <option value="3">3</option>
@@ -40,13 +39,17 @@
 
                                 <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
                             </form>
-                            <a class="btn btn-commande" href="<?php echo site_url('site/add/' . $a->id) ?>"
-                               ng-click="popupmessages(pizza.noms)"><i class="icon icon-shoppint-cart"></i>Commander</a>
+
+                            <a class="btn btn-commande" href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
+                               ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart"></i>Commander</a>
+
+                            <a class="btn btn-commande" href="#"
+                               ng-click="addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart"></i>Commande</a>
                             <div class="clearfix"></div>
                         </div>
 
 
-                    <?php endforeach; ?>
+                    <?php //endforeach; ?>
                 </div>
                 <div class="span6">
 
@@ -54,7 +57,16 @@
                     <div id="commande">
 
 
-                        <div class="rubandcommande"><h2>Votre Commande</h2></div>
+                        <div class="rubandcommande"><h2>Votre Commande</h2>
+                            
+
+                            <ul ng-repeat="local in localStorageDemoValue" >
+                                <li>{{local.nom}}</li>
+                                <li>{{local.prix}}</li>
+                            </ul>
+
+
+                        </div>
 
 
                     </div>

@@ -168,6 +168,13 @@ public function get_list() {
 	}
 
 
+	public function get_pizza() {
+		$this->load->model(array('lacart'));
+		$data = $this->lacart->getAllPizza();
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+	}
+
+
 
 }
 

@@ -53,4 +53,12 @@ $(update_form).each(function(){
     });
   });
 
+  $(".btn-commande").click(function(event) {
+
+    alert("au secours");
+    event.preventDefault();
+
+
+  });
+
 });

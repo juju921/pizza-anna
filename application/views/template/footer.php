@@ -30,13 +30,18 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-flash-alert/dist/angular-flash.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="<?php echo base_url(); ?>node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
 
-    var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate']);
+    var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate','LocalStorageModule']);
+    app.config(function (localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('yourAppName');
+    });
 
+    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService) {
 
-    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http', function ($rootScope, $scope, Flash, $timeout,$http) {
 
         $scope.success = function () {
             var message = '<strong>votre pizza</strong> ' +
@@ -46,14 +51,44 @@
 
         $scope.pizzas = [];
         $http.get('<?php echo site_url('site/get_list');?>').success(function($data){
-            $scope.pizzas=$data;
+            $scope.pizzas = $data;
+
         });
+
 
         $scope.popupmessages = function (piz) {
             var message = '<strong>votre pizza</strong> ' + piz +
                 ' à été ajouté au patnier';
             Flash.create('success', message);
+
         }
+
+        $scope.pizza = [];
+        $scope.addPizza = function(nom, prix){
+
+            var tabpizza = {
+                nom: nom,
+                prix: prix,
+
+            };
+            $scope.pizza.push(tabpizza);
+            console.log($scope.pizza);
+            $scope.saveItems($scope.pizza);
+            localStorageService.set('localStorageDemo', $scope.pizza);
+            $scope.localStorageDemoValue = localStorageService.get('localStorageDemo');
+
+
+        };
+
+        $scope.saveItems = function (pizza) {
+            if (localStorage !== null && JSON !== null) {
+                localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
+
+
+
+            }
+        };
+
 
 
 
@@ -63,6 +98,7 @@
 
 
 </script>
-
+<script src="<?php echo base_url(); ?>js/service/item.js"></script>
+<script src="<?php echo base_url(); ?>js/service/panier.js"></script>
 </body>
 </html>
