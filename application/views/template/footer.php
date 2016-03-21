@@ -84,8 +84,6 @@
             if (localStorage !== null && JSON !== null) {
                 localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
 
-
-
             }
         };
 

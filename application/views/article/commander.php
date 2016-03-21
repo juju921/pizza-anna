@@ -44,7 +44,7 @@
                                ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart"></i>Commander</a>
 
                             <a class="btn btn-commande" href="#"
-                               ng-click="addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart"></i>Commande</a>
+                               ng-click="addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart" ></i>Commande</a>
                             <div class="clearfix"></div>
                         </div>
 
@@ -60,8 +60,8 @@
                         <div class="rubandcommande"><h2>Votre Commande</h2>
                             
 
-                            <ul ng-repeat="local in localStorageDemoValue" >
-                                <li>{{local.nom}}</li>
+                            <ul ng-repeat="local in localStorageDemoValue" class="fade-in" >
+                                <li>{{local.nom}} <button>supprimez</button> </li>
                                 <li>{{local.prix}}</li>
                             </ul>
 
