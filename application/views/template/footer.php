@@ -80,12 +80,23 @@
 
         };
 
+        $scope.deletePizza = function(noms){
+            console.log(noms);
+            var index = $scope.pizza.indexOf(noms)
+            $scope.pizza.splice(index,1);
+        }
+
         $scope.saveItems = function (pizza) {
             if (localStorage !== null && JSON !== null) {
                 localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
 
             }
         };
+
+
+
+
+
 
 
 

@@ -61,8 +61,9 @@
                             
 
                             <ul ng-repeat="local in localStorageDemoValue" class="fade-in" >
-                                <li>{{local.nom}} <button>supprimez</button> </li>
+                                <li>{{local.nom}} <button ng-click="deletePizza(localStorageDemoValue.noms)">supprimez</button> </li>
                                 <li>{{local.prix}}</li>
+
                             </ul>
 
 
