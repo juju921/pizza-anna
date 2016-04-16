@@ -64,11 +64,12 @@
         }
 
         $scope.pizza = [];
-        $scope.addPizza = function(nom, prix){
+        $scope.addPizza = function(nom, prix, id){
 
             var tabpizza = {
                 nom: nom,
                 prix: prix,
+                id: id
 
             };
             $scope.pizza.push(tabpizza);
@@ -84,7 +85,7 @@
             console.log(noms);
             var index = $scope.pizza.indexOf(noms)
             $scope.pizza.splice(index,1);
-        }
+        };
 
         $scope.saveItems = function (pizza) {
             if (localStorage !== null && JSON !== null) {
@@ -92,6 +93,13 @@
 
             }
         };
+
+        $scope.deleteThispizza =  function (id) {
+            return localStorageService.remove(id);
+            console.log(id);
+
+        };
+
 
 
 

@@ -41,10 +41,10 @@
                             </form>
 
                             <a class="btn btn-commande" href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
-                               ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart"></i>Commander</a>
+                               ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix, pizza.id)"><i class="icon icon-shoppint-cart"></i>Commander</a>
 
                             <a class="btn btn-commande" href="#"
-                               ng-click="addPizza(pizza.noms, pizza.prix)"><i class="icon icon-shoppint-cart" ></i>Commande</a>
+                               ng-click="addPizza(pizza.noms, pizza.prix,pizza.id)"><i class="icon icon-shoppint-cart" ></i>Commande</a>
                             <div class="clearfix"></div>
                         </div>
 
@@ -63,6 +63,9 @@
                             <ul ng-repeat="local in localStorageDemoValue" class="fade-in" >
                                 <li>{{local.nom}} <button ng-click="deletePizza(localStorageDemoValue.noms)">supprimez</button> </li>
                                 <li>{{local.prix}}</li>
+                                <li>{{local.id}}</li>
+                                <a href="#" ng-click="deleteThispizza(local.id)">{{local.id}}</a>
+
 
                             </ul>
 
