@@ -13,7 +13,6 @@ app.factory('CartItems', function ($rootScope, $log) {
         }
     };
 
-
     item.prototype.setPrix = function (prix) {
         if (price) {
             if (price <= 0) {
@@ -25,6 +24,5 @@ app.factory('CartItems', function ($rootScope, $log) {
             $log.error('A price must be provided');
         }
     };
-
-
+    
 })

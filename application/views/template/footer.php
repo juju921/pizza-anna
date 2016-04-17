@@ -40,6 +40,11 @@
             .setPrefix('yourAppName');
     });
 
+	app.controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
+		$scope.ngCart = ngCart;
+
+	}])
+
     app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService) {
 
 
@@ -50,9 +55,8 @@
         };
 
         $scope.pizzas = [];
-        $http.get('<?php echo site_url('site/get_list');?>').success(function($data){
+       $http.get('<?php echo site_url('site/get_list');?>').success(function($data){
             $scope.pizzas = $data;
-
         });
 
 
@@ -96,8 +100,20 @@
 
         $scope.deleteThispizza =  function (id) {
             return localStorageService.remove(id);
-            console.log(id);
 
+
+        };
+
+        $scope.addItem = function (noms, prix, id, q) {
+            var tabpizza = {
+                nom: noms,
+                prix: prix,
+                id: id,
+                qt : q
+            };
+            $scope.pizza.push(tabpizza);
+            console.log(tabpizza);
+            $rootScope.$broadcast('ngCart:change', {});
         };
 
 
@@ -107,15 +123,13 @@
 
 
 
-
-
-
-    }]);
+	}]);
 
 
 
 </script>
 <script src="<?php echo base_url(); ?>js/service/item.js"></script>
 <script src="<?php echo base_url(); ?>js/service/panier.js"></script>
+<script src="<?php echo base_url(); ?>js/service/Cart.js"></script>
 </body>
 </html>
