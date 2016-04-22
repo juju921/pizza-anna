@@ -84,7 +84,6 @@ class Site extends Ci_Controller{
 		
 		$pizza = $this->sitemodel->get_one($id);
 
-
 		$data = array(
 			'id'=>$pizza->id,
 			'qty'=>1,

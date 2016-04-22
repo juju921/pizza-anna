@@ -43,11 +43,11 @@
                            ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix, pizza.id)"><i
                                 class="icon icon-shoppint-cart"></i>Commander</a>
 
-                        <a class="btn btn-commande" href="#"
-                           ng-click="addPizza(pizza.noms, pizza.prix,pizza.id)"><i class="icon icon-shoppint-cart"></i>Commande</a>
+                      <!--  <a class="btn btn-commande" href="#"
+                           ng-click="addPizza(pizza.noms, pizza.prix,pizza.id)"><i class="icon icon-shoppint-cart"></i>Commande</a>-->
 
 
-                        <select name="quantity" id="quantity" ng-model="q">
+                        <select name="quantity" id="quantity" ng-model="q" data="item">
                             <option value="1" ng-selected="1" >1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -60,8 +60,9 @@
                             <option value="10">10</option>
                         </select>
 
-                        <a class="btn btn-sm btn-primary"
-                           ng-click="addItem(pizza.noms, pizza.prix,pizza.id,q)"
+                        <a class="btn btn-sm btn-primary macommande"
+                           href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
+                           ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
                            >Ajouter</a>
 
 
@@ -71,7 +72,7 @@
 
                     <?php //endforeach; ?>
                 </div>
-                <div class="span6">
+                <div class="span6" >
 
 
                     <div id="commande">
@@ -89,7 +90,24 @@
                                 <a href="#" ng-click="deleteThispizza(local.id)">{{local.id}}</a>
 
 
+
                             </ul>
+
+
+                            <ul ng-repeat="item in ngCart.getCart().items track by $index">
+                                <li><span ng-click="ngCart.removeItemById(item.getId())" class="icon-white icon-trash"></span></li>
+
+                                <li>{{ item.getName() }}</li>
+                                <li><span class="fa fa-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                                    <span class="fa fa-plus" ng-click="item.setQuantity(1, true)"></span></li>
+
+                            </ul>
+
+                            <span>{{ ngCart.totalCost() | currency }}</span>
+
+
 
 
                         </div>

@@ -40,12 +40,10 @@
             .setPrefix('yourAppName');
     });
 
-	app.controller('CartController',['$scope', 'ngCart', function($scope, ngCart) {
-		$scope.ngCart = ngCart;
 
-	}])
 
-    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService) {
+    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart) {
+        $scope.ngCart = ngCart;
 
 
         $scope.success = function () {
