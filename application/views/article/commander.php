@@ -39,10 +39,10 @@
                             <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
                         </form>
 
-                        <a class="btn btn-commande" href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
+                        <!--   <a class="btn btn-commande" href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
                            ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix, pizza.id)"><i
                                 class="icon icon-shoppint-cart"></i>Commander</a>
-
+-->
                       <!--  <a class="btn btn-commande" href="#"
                            ng-click="addPizza(pizza.noms, pizza.prix,pizza.id)"><i class="icon icon-shoppint-cart"></i>Commande</a>-->
 
@@ -105,20 +105,10 @@
 
                             </ul>
 
-                            <span>{{ ngCart.totalCost() | currency }}</span>
-
-
-
-
+                                <span>{{ ngCart.totalCost() | currency }}</span>
                         </div>
-
-
                     </div>
-
-
                 </div>
-
-
             </div>
         <?php endif; ?>
 

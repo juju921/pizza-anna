@@ -129,5 +129,6 @@
 <script src="<?php echo base_url(); ?>js/service/item.js"></script>
 <script src="<?php echo base_url(); ?>js/service/panier.js"></script>
 <script src="<?php echo base_url(); ?>js/service/Cart.js"></script>
+<script src="<?php echo base_url(); ?>node_modules/angular-i18n/angular-locale_fr-fr.js"></script>
 </body>
 </html>

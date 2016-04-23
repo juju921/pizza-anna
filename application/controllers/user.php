@@ -25,7 +25,7 @@ class User extends CI_Controller
 
         $data = array(
             'user' => $this->user,
-            'orders' => $this->sitemodel->get_orders($this->user->user_id),
+            //'orders' => $this->sitemodel->get_orders($this->user->user_id),
             'test' => "bonjour",
             'content' => 'user/test',
         );
