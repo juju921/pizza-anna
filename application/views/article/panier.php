@@ -19,7 +19,7 @@
 				$pizza->id;
 				?>
 
-				<tr ng-repeat="item in ngCart.getCart().items track by $index">
+				<tr >
 					<td>
 
 					</td>
@@ -29,7 +29,7 @@
 							<?php echo form_open('site/update/' . $cart['rowid'], array('class' => 'form-inline')); ?>
 							<input type="hidden" name="id" value="<?php echo $pizza->id; ?>">
 							<input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
-							<input type="text" name="qty" class="input-small" value="{{ item.getQuantity() | number }}">
+							<input type="text" name="qty" class="input-small" value="<?php echo $cart['qty']; ?>">
 							<button class="btn"><i class="icon-pencil"></i></button>
 							<span class="delete">
 								<a href="<?php echo site_url('site/delete/' . $cart['rowid']); ?>"

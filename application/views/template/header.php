@@ -100,8 +100,8 @@
                         <p>Ma commande  <img src="<?php echo base_url(); ?>img/pizzapart.png">
                             (<?php if ($this->cart->contents()): ?>
                             <a href="<?php echo site_url('panier'); ?>">
-                                <span class="nb_article">
-                                        <?php echo $this->cart->total_items(); ?></span>
+                                <span>
+                                       {{ ngCart.getTotalItems()  }}</span>
 
                                 </a> <?php endif; ?>) 
 
