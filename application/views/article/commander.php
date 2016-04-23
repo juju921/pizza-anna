@@ -60,6 +60,7 @@
                             <option value="10">10</option>
                         </select>
 
+                        
                         <a class="btn btn-sm btn-primary macommande"
                            href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
                            ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
