@@ -15,14 +15,12 @@ class User extends CI_Controller
 
         $this->view_folder = strtolower(__CLASS__) . '/';
     }
-
     public function index()
     {
         if (!$this->sitemodel->is_logged()) {
             redirect('user/login');
             exit;
         }
-
         $data = array(
             'user' => $this->user,
             //'orders' => $this->sitemodel->get_orders($this->user->user_id),

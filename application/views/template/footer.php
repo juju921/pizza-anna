@@ -122,9 +122,7 @@
 
 
 	}]);
-
-
-
+    
 </script>
 <script src="<?php echo base_url(); ?>js/service/item.js"></script>
 <script src="<?php echo base_url(); ?>js/service/panier.js"></script>
