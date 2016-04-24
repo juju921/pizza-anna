@@ -26,45 +26,32 @@
                               method="post">
                             <input type="hidden" name="idpiz" value="{{pizza.id}}">
 
-                            <!-- <label class="control-label">Quantité</label>
+							<select name="quantity" id="quantity" ng-model="q" data="item">
+								<option value="1" ng-selected="1" >1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
 
-       <select name="quantite">
-           <option value="1" selected="selected" >1</option>
-           <option value="2">2</option>
-           <option value="3">3</option>
-           <option value="4">4</option>
-       </select>-->
+
+							<a class="btn btn-sm btn-primary macommande"
+							   href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
+							   ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
+							>Ajouter</a>
 
 
-                            <!--  <input type="submit" value="Ajouter" class="btn btn-primary" name="valider">-->
+
                         </form>
 
-                        <!--   <a class="btn btn-commande" href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
-                           ng-click="popupmessages(pizza.noms);addPizza(pizza.noms, pizza.prix, pizza.id)"><i
-                                class="icon icon-shoppint-cart"></i>Commander</a>
--->
-                      <!--  <a class="btn btn-commande" href="#"
-                           ng-click="addPizza(pizza.noms, pizza.prix,pizza.id)"><i class="icon icon-shoppint-cart"></i>Commande</a>-->
 
 
-                        <select name="quantity" id="quantity" ng-model="q" data="item">
-                            <option value="1" ng-selected="1" >1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                        </select>
 
-                        
-                        <a class="btn btn-sm btn-primary macommande"
-                           href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
-                           ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
-                           >Ajouter</a>
 
 
                         <div class="clearfix"></div>

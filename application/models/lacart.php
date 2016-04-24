@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class lacart extends CI_Model {
+class lacart extends CI_Model
+{
 
 	function __construct()
 	{
@@ -10,15 +11,13 @@ class lacart extends CI_Model {
 
 	}
 
-function get_all()
+	function get_all()
 	{
 		$this->load->database();
 		$q = $this->db->select('*')->from('pizza')->order_by('numero', 'ASC')
-		->get();
-		if($q->num_rows()>0)
-		{
-			foreach($q->result() as $row)
-			{
+			->get();
+		if ($q->num_rows() > 0) {
+			foreach ($q->result() as $row) {
 				$data[] = $row;
 			}
 			return $data;
@@ -26,23 +25,23 @@ function get_all()
 	}
 
 
-		function get_one($id)
+	function get_one($id)
 	{
 		$q = $this->db->select('*')->from('pizza p')
-		->where('p.id',$id)
-		->get();
-		if($q->num_rows()>0)
-		{
+			->where('p.id', $id)
+			->get();
+		if ($q->num_rows() > 0) {
 			return $q->row();
 		}
 	}
 
 
-	public function getAllPizza() {
+	public function getAllPizza()
+	{
 		return $this->db->from($this->table_name)->order_by('numero', 'ASC')->get()->result_array();
 	}
 
-	
-	}
+
+}
 
 	

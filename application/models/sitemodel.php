@@ -25,6 +25,7 @@ function get_all()
 
 		function get_one($id)
 	{
+		
 		$q = $this->db->select('*')->from('pizza')
 		->where('id',$id)
 		->get();
@@ -32,6 +33,7 @@ function get_all()
 		{
 			return $q->row();
 		}
+
 	}
 
 
