@@ -1,4 +1,5 @@
-.idea
+# PHP STORM
+/.idea/
 user_guide
 */config/development
 */logs/log-*.php
