@@ -100,6 +100,7 @@
                 count += item.getQuantity();
             });
             return count;
+
         };
 
         this.getTotalUniqueItems = function () {
@@ -241,7 +242,6 @@
 
         item.prototype.setQuantity = function(quantity, relative){
 
-
             var quantityInt = parseInt(quantity);
             if (quantityInt % 1 === 0){
                 if (relative === true){
@@ -255,6 +255,7 @@
                 this._quantity = 1;
                 $log.info('Quantity must be an integer and was defaulted to 1');
             }
+            //$log.info(this._quantity);
 
 
         };

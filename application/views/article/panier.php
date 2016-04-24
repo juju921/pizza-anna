@@ -6,9 +6,10 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 			<tr>
-				<th></th>
+
 				<th>Description</th>
 				<th>Qty</th>
+				<th>supprimer</th>
 				<th>Price</th>
 				<th>Total</th>
 			</tr>
@@ -19,27 +20,36 @@
 				$pizza->id;
 				?>
 
-				<tr >
-					<td>
+				<tr>
 
-					</td>
-					<td><strong>{{ item.getName() }}</strong></td>
+					<td><strong><?php echo $cart['name'] ?></strong></td>
 					<td>
 						<span class="update_form">
 							<?php echo form_open('site/update/' . $cart['rowid'], array('class' => 'form-inline')); ?>
 							<input type="hidden" name="id" value="<?php echo $pizza->id; ?>">
 							<input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
-							<input type="text" name="qty" class="input-small" value="<?php echo $cart['quantity']; ?>">
-							
+
+
+<span ng-repeat="item in ngCart.getCart().items track by $index">
+	<input type="text" name="qty" class="input-small" value="{{ item.getQuantity() | number }}">
+							<span class="fa fa-minus" ng-class="{'disabled':item.getQuantity()==1}"
+								  ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                                    <span class="fa fa-plus" ng-click="item.setQuantity(1, true)"></span>
+</span>
 							<button class="btn"><i class="icon-pencil"></i></button>
-							<span class="delete">
-								<a href="<?php echo site_url('site/delete/' . $cart['rowid']); ?>"
-								   class="btn btn-inverse"><i class="icon-white icon-trash"></i></a>
-							</span>
 							<?php echo form_close(); ?>
 						</span>
 					</td>
-					<td><?php echo number_format($cart['price'], 2, ',', ' '); ?></td>
+					<td>
+							<span class="delete" ng-repeat="item in ngCart.getCart().items track by $index">
+								<a href="<?php echo site_url('site/delete/' . $cart['rowid']); ?>"
+								   class="btn btn-inverse" ng-click="ngCart.removeItemById(item.getId())"><i
+										class="icon-white icon-trash"></i></a>
+								</span>
+					</td>
+					<td><?php echo number_format($cart['price'], 2, ',', ' '); ?> </td>
+
 					<td><span
 							class="total_for_item"><?php echo number_format($cart['price'] * $cart['qty'], 2, ',', ' '); ?></span>
 						€
@@ -53,14 +63,14 @@
 			</tr>
 			<tr>
 				<td colspan="4"><strong>Nombre d'articles</strong></td>
-				<td><span class="nb_article"><?php echo $total_articles; ?></span></td>
+				<td><span class="nb_article">{{ ngCart.getTotalItems()  }}</span></td>
 			</tr>
 
 			<tr>
 				<td colspan="4"><strong>Total</strong></td>
 				<td><strong><span
-							class="total">{{ ngCart.totalCost() | currency }} <?php echo number_format($total, 2, ',', ' '); ?></span>
-						€ </strong>
+							class="total">{{ ngCart.totalCost() | currency }} <?php //echo number_format($total, 2, ',', ' '); ?></span>
+					</strong>
 				</td>
 			</tr>
 			</tbody>

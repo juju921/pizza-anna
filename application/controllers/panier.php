@@ -1,4 +1,3 @@
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class panier extends CI_Controller {
@@ -7,15 +6,11 @@ class panier extends CI_Controller {
 	{
 		parent::__construct();
 		$this->view_folder = strtolower(__CLASS__).'/';
-		
+
 	}
 
 	public function index()
 	{
-
-		//echo $this->input->post('quantite');
-		//$idp= $this->input->post('idpiz');
-		
 
 		$data = array(
 
@@ -25,7 +20,7 @@ class panier extends CI_Controller {
 			'total_articles'=>$this->cart->total_items(),
 			'content'=>'article/panier',
 
-			
+
 
 			);
 		$this->load->view('template/content',$data);
