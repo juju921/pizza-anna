@@ -1,5 +1,4 @@
-# PHP STORM
-/.idea/
+
 user_guide
 */config/development
 */logs/log-*.php
@@ -7,3 +6,5 @@ user_guide
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+# PHP STORM
+.idea/
