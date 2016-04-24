@@ -29,9 +29,8 @@
 							<?php echo form_open('site/update/' . $cart['rowid'], array('class' => 'form-inline')); ?>
 							<input type="hidden" name="id" value="<?php echo $pizza->id; ?>">
 							<input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
-							<input type="text" name="qty" class="input-small" value="<?php echo $cart['qty']; ?>">
+							<input type="text" name="qty" class="input-small" value="<?php echo $cart['quantity']; ?>">
 							
-							<span><?php echo $cart['quantity']; ?></span>
 							<button class="btn"><i class="icon-pencil"></i></button>
 							<span class="delete">
 								<a href="<?php echo site_url('site/delete/' . $cart['rowid']); ?>"

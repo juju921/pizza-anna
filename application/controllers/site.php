@@ -73,17 +73,17 @@ class Site extends Ci_Controller
 	}
 
 
-	public function add($id = null)
+	public function add()
 	{
-		if (!$id || !$this->sitemodel->get_one($id)) {
+		/*if (!$id || !$this->sitemodel->get_one($id)) {
 			redirect();
 			exit;
-		}
+		}*/
 
-		$pizza = $this->sitemodel->get_one($id);
+		$pizza = $this->sitemodel->get_one($this->input->post('idpiz'));
 		//$this->input->post('idpiz')
 		$data = array(
-			'id' => $pizza->id,
+			'id' => $this->input->post('idpiz'),
 			'qty' => 1,
 			'quantity' => $this->input->post('quantity'),
 			'price' => $pizza->prix,

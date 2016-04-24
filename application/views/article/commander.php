@@ -22,8 +22,7 @@
                         <p>{{pizza.ingredients}}<?php //echo $a->ingredients; ?></p>
 
                         <?php //foreach ($pizza as $a): ?>
-                        <form class="navbar-form pull-right" action=""
-                              method="post">
+                        <?php echo form_open('site/add/'); ?>
                             <input type="hidden" name="idpiz" value="{{pizza.id}}">
 
 							<select name="quantity" id="quantity" ng-model="q" data="item">
@@ -40,11 +39,8 @@
 							</select>
 
 
-							<a class="btn btn-sm btn-primary macommande"
-							   href="<?php echo site_url('site/add/') ?>/{{pizza.id}}"
-							   ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
-							>Ajouter</a>
-
+							<a class="btn btn-sm btn-primary macommande">Ajouter</a>
+                        <input TYPE="submit" NAME="nom" VALUE="texte du bouton" ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)">
 
 
                         </form>
