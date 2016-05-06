@@ -61,6 +61,7 @@
 								class="col-md-7 col-sm-12 text-left">
 
                                 <span>
+							<pre>{{ item._quantity | number }}</pre>
 
 
                                 <span>{{ item.getName() }}</span>
@@ -70,9 +71,11 @@
                                     <span class="fa fa-plus" ng-click="item.setQuantity(1, true)"></span></span>
 									<span ng-click="ngCart.removeItemById(item.getId())"
 										  class="icon-white icon-trash"></span></span>
-
+								<pre>{{item.getQuantity()}}</pre>
+								
 							</ul>
 							</form>
+							<pre>{{ngCart.getCart()}}</pre>
 							<span>{{ ngCart.totalCost() | currency }}</span>
 						</div>
 					</div>

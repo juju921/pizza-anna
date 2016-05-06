@@ -6,7 +6,6 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 			<tr>
-
 				<th>Description</th>
 				<th>Qty</th>
 				<th>supprimer</th>
@@ -31,11 +30,13 @@
 
 
 <span ng-repeat="item in ngCart.getCart().items track by $index">
-	<input type="text" name="qty" class="input-small" value="{{ item.getQuantity() | number }}">
+
 							<span class="fa fa-minus" ng-class="{'disabled':item.getQuantity()==1}"
 								  ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
                                     {{ item.getQuantity() | number }}&nbsp;&nbsp;
                                     <span class="fa fa-plus" ng-click="item.setQuantity(1, true)"></span>
+
+	{{ item._quantity | number }}
 </span>
 							<button class="btn"><i class="icon-pencil"></i></button>
 							<?php echo form_close(); ?>
@@ -57,7 +58,7 @@
 				</tr>
 
 			<?php endforeach; ?>
-
+			<pre><{{cart}}</pre>
 			<tr>
 				<td colspan="6">&nbsp</td>
 			</tr>
@@ -73,6 +74,7 @@
 					</strong>
 				</td>
 			</tr>
+
 			</tbody>
 		</table>
 	<span>
