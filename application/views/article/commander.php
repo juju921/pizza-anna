@@ -41,8 +41,12 @@
 
 						<!--<a class="btn btn-sm btn-primary macommande">Ajouter</a>-->
 						<input TYPE="submit" NAME="nom" VALUE="Ajouter"
-							   ng-click="ngCart.addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
 							   class="btn btn-sm btn-primary">
+
+						<a href="#"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
+							   class="btn btn-sm btn-primary">ajouter</a>
 
 
 						</form>
@@ -77,6 +81,26 @@
 							</form>
 							<pre>{{ngCart.getCart()}}</pre>
 							<span>{{ ngCart.totalCost() | currency }}</span>
+							<ul>
+								<li ng-repeat="item in data">
+
+									<div>
+										id:{{ item.id }}
+
+										<div class="pull-right" >
+											<div class="btn-group" >
+												<button type="button" class="btn btn-primary" ng-click="increment(item);"><i class=" glyphicon glyphicon-menu-up"></i></button>
+												<button type="button" class="btn btn-" style="width:55px;">{{ item.quan }}</button>
+												<button type="button" class="btn btn-primary" ng-click="decrement(item);"><i class=" glyphicon glyphicon-menu-down"></i></button>
+											</div>
+										</div>
+										<div>price:{{item.price * item.quan}}</div>
+
+									</div>
+								</li>
+
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
