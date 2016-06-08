@@ -41,11 +41,11 @@
 
 						<!--<a class="btn btn-sm btn-primary macommande">Ajouter</a>-->
 						<input TYPE="submit" NAME="nom" VALUE="Ajouter"
-							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,data)"
 							   class="btn btn-sm btn-primary">
 
 						<a href="#"
-							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,q,data)"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,data)"
 							   class="btn btn-sm btn-primary">ajouter</a>
 
 
@@ -61,6 +61,11 @@
 						<div class="rubandcommande"><h2>Votre Commande</h2>
 						
 							<?php echo form_open('site/add/'); ?>
+							<ul ng-repeat="item in ngStorage-notes">
+								<span>{{ item.nom }}</span>
+
+
+							</ul>
 							<ul ng-repeat="item in ngCart.getCart().items track by $index"
 								class="col-md-7 col-sm-12 text-left">
 

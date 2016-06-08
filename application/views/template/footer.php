@@ -99,9 +99,9 @@
         }
 
         $scope.pizza = [];
-		$scope.addItem = function (id, name, name, quantity, data) {
-			//var inCart = this.getItemById(id);
-			if (typeof inCart === 'object'){
+		$scope.addItem = function (id, name,  quantity, data) {
+
+			 if (typeof inCart === 'object'){
 				//Update quantity of an item if it's already in the cart
 				inCart.setQuantity(quantity, false);
 				$rootScope.$broadcast('ngCart:itemUpdated', inCart);
@@ -114,27 +114,9 @@
 				});
 
 				$scope.pizzas = $localStorage.notes;
-
-				//$rootScope.$broadcast('ngCart:itemAdded', newItem);
 			}
 			$rootScope.$broadcast('ngCart:change', {});
 		};
-        /*$scope.addPizza = function(nom, prix, id){
-
-            var tabpizza = {
-                nom: nom,
-                prix: prix,
-                id: id
-
-            };
-            $scope.pizza.push(tabpizza);
-            console.log($scope.pizza);
-            $scope.saveItems($scope.pizza);
-            localStorageService.set('localStorageDemo', $scope.pizza);
-            $scope.localStorageDemoValue = localStorageService.get('localStorageDemo');
-
-
-        };*/
 
         $scope.deletePizza = function(noms){
             console.log(noms);
@@ -154,24 +136,6 @@
 
 
         };
-
-        /*$scope.addItem = function (noms, prix, id, q) {
-            var tabpizza = {
-                nom: noms,
-                prix: prix,
-                id: id,
-                qt : q
-            };
-            $scope.pizza.push(tabpizza);
-            //console.log(tabpizza);
-            $rootScope.$broadcast('ngCart:change', {});
-        };*/
-
-
-
-
-      
-
 
 	}]);
     
