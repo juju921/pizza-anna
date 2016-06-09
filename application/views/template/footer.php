@@ -1,4 +1,4 @@
-﻿<footer>
+﻿﻿<footer>
 
     <div id="footer">
         <p><span>Remerciements à : José, Cindy, Sarah et Julien pour la vie du site internet depuis sa création
@@ -73,7 +73,7 @@
         $scope.ngCart = ngCart;
 
 		$scope.$storage = $localStorage.$default({
-			"notes": []
+			"moncadie": []
 		});
 
 
@@ -98,25 +98,45 @@
 
         }
 
-        $scope.pizza = [];
-		$scope.addItem = function (id, name,  quantity, data) {
+        $scope.pizzas = [];
+		$scope.addItem = function (id, name, prix, quantity, data) {
 
-			 if (typeof inCart === 'object'){
+			//var inCart = this.getItemById(id);
+			if (typeof inCart === 'object'){
 				//Update quantity of an item if it's already in the cart
 				inCart.setQuantity(quantity, false);
 				$rootScope.$broadcast('ngCart:itemUpdated', inCart);
 			} else {
-				$scope.$storage.notes.push({
+				$scope.$storage.moncadie.push({
 					"id": id,
 					"name": name,
+                    "prix": prix,
 					"qt": quantity,
 					"data": data
 				});
 
-				$scope.pizzas = $localStorage.notes;
+				$scope.moncadipizzas = $localStorage.moncadie;
+                console.log($scope.moncadipizzas);
+                
 			}
-			$rootScope.$broadcast('ngCart:change', {});
+			
 		};
+        /*$scope.addPizza = function(nom, prix, id){
+
+            var tabpizza = {
+                nom: nom,
+                prix: prix,
+                id: id
+
+            };
+            $scope.pizza.push(tabpizza);
+            console.log($scope.pizza);
+            $scope.saveItems($scope.pizza);
+            localStorageService.set('localStorageDemo', $scope.pizza);
+            $scope.localStorageDemoValue = localStorageService.get('localStorageDemo');
+
+
+        };*/
 
         $scope.deletePizza = function(noms){
             console.log(noms);
@@ -136,6 +156,24 @@
 
 
         };
+        
+        /*$scope.addItem = function (noms, prix, id, q) {
+            var tabpizza = {
+                nom: noms,
+                prix: prix,
+                id: id,
+                qt : q
+            };
+            $scope.pizza.push(tabpizza);
+            //console.log(tabpizza);
+            $rootScope.$broadcast('ngCart:change', {});
+        };*/
+
+
+
+
+      
+
 
 	}]);
     

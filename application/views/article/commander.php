@@ -45,7 +45,7 @@
 							   class="btn btn-sm btn-primary">
 
 						<a href="#"
-							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix,data)"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix, q, data); success()"
 							   class="btn btn-sm btn-primary">ajouter</a>
 
 
@@ -84,7 +84,6 @@
 								
 							</ul>
 							</form>
-							<pre>{{ngCart.getCart()}}</pre>
 							<span>{{ ngCart.totalCost() | currency }}</span>
 							<ul>
 								<li ng-repeat="item in data">
@@ -104,7 +103,12 @@
 									</div>
 								</li>
 
-								</li>
+
+							</ul>
+
+							<ul ng-repeat="item in moncadipizzas">
+								<li>{{item.name}}</li>
+
 							</ul>
 						</div>
 					</div>
