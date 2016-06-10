@@ -107,6 +107,7 @@
 				inCart.setQuantity(quantity, false);
 				$rootScope.$broadcast('ngCart:itemUpdated', inCart);
 			} else {
+
 				$scope.$storage.moncadie.push({
 					"id": id,
 					"name": name,
@@ -116,7 +117,9 @@
 				});
 
 				$scope.moncadipizzas = $localStorage.moncadie;
-                console.log($scope.moncadipizzas);
+                console.log($localStorage.moncadie);
+                $scope.saveItems($scope.moncadipizzas);
+                
                 
 			}
 			
@@ -146,7 +149,7 @@
 
         $scope.saveItems = function (pizza) {
             if (localStorage !== null && JSON !== null) {
-                localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
+                localStorage['moncadie_items'] = JSON.stringify($scope.moncadipizzas);
 
             }
         };
