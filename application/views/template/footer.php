@@ -37,6 +37,7 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
+<script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
 
     var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate','LocalStorageModule','ngResource','ngStorage']);
@@ -69,10 +70,14 @@
 
 
 
-	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage) {
+	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage,DataService) {
         $scope.ngCart = ngCart;
 
-		$scope.$storage = $localStorage.$default({
+		// create shopping cart
+		var myCart = new myCart("AngularStore");
+
+
+			$scope.$storage = $localStorage.$default({
 			"notes": []
 		});
 
