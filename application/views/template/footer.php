@@ -37,6 +37,7 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
+<script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
 
     var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate','LocalStorageModule','ngResource','ngStorage']);
@@ -69,11 +70,15 @@
 
 
 
-	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage) {
+	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage,DataService) {
         $scope.ngCart = ngCart;
 
-		$scope.$storage = $localStorage.$default({
-			"moncadie": []
+		// create shopping cart
+		var myCart = new myCart("AngularStore");
+
+
+			$scope.$storage = $localStorage.$default({
+			"notes": []
 		});
 
 
@@ -98,48 +103,25 @@
 
         }
 
-        $scope.pizzas = [];
-		$scope.addItem = function (id, name, prix, quantity, data) {
+        $scope.pizza = [];
+		$scope.addItem = function (id, name,  quantity, data) {
 
-			//var inCart = this.getItemById(id);
-			if (typeof inCart === 'object'){
+			 if (typeof inCart === 'object'){
 				//Update quantity of an item if it's already in the cart
 				inCart.setQuantity(quantity, false);
 				$rootScope.$broadcast('ngCart:itemUpdated', inCart);
 			} else {
-
-				$scope.$storage.moncadie.push({
+				$scope.$storage.notes.push({
 					"id": id,
 					"name": name,
-                    "prix": prix,
 					"qt": quantity,
 					"data": data
 				});
 
-				$scope.moncadipizzas = $localStorage.moncadie;
-                console.log($localStorage.moncadie);
-                $scope.saveItems($scope.moncadipizzas);
-                
-                
+				$scope.pizzas = $localStorage.notes;
 			}
-			
+			$rootScope.$broadcast('ngCart:change', {});
 		};
-        /*$scope.addPizza = function(nom, prix, id){
-
-            var tabpizza = {
-                nom: nom,
-                prix: prix,
-                id: id
-
-            };
-            $scope.pizza.push(tabpizza);
-            console.log($scope.pizza);
-            $scope.saveItems($scope.pizza);
-            localStorageService.set('localStorageDemo', $scope.pizza);
-            $scope.localStorageDemoValue = localStorageService.get('localStorageDemo');
-
-
-        };*/
 
         $scope.deletePizza = function(noms){
             console.log(noms);
@@ -149,7 +131,7 @@
 
         $scope.saveItems = function (pizza) {
             if (localStorage !== null && JSON !== null) {
-                localStorage['moncadie_items'] = JSON.stringify($scope.moncadipizzas);
+                localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
 
             }
         };
@@ -159,24 +141,6 @@
 
 
         };
-        
-        /*$scope.addItem = function (noms, prix, id, q) {
-            var tabpizza = {
-                nom: noms,
-                prix: prix,
-                id: id,
-                qt : q
-            };
-            $scope.pizza.push(tabpizza);
-            //console.log(tabpizza);
-            $rootScope.$broadcast('ngCart:change', {});
-        };*/
-
-
-
-
-      
-
 
 	}]);
     
