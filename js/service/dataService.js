@@ -1,10 +1,11 @@
 'use strict';
 
-storeApp.factory("DataService", function() {
+app.factory("DataService", function () {
 
-	var myCart = new shoppingCart("myCart");
+    var myCarts = new shoppingCart("PizzaAnna");
 
-	return {
-		cart: myCart
-	};
+    return {
+        cart: myCarts
+    };
 });
+

@@ -25,8 +25,8 @@
 						<?php echo form_open('site/add/'); ?>
 						<input type="hidden" name="idpiz" value="{{pizza.id}}">
 
-						<select name="quantity" id="quantity" ng-model="q" data="item">
-							<option value="1" ng-selected="1">1</option>
+						<select name="quantity" id="quantity" ng-model="q" data="item" ng-init="q='1'">
+							<option value="1" ng-selected="true">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
@@ -45,7 +45,7 @@
 							   class="btn btn-sm btn-primary">
 
 						<a href="#"
-							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix, q, data); success()"
+							   ng-click="addItem(pizza.id,pizza.noms, pizza.prix, q, data); success(); cart.addItem(pizza.id,pizza.noms, pizza.prix, q);"
 							   class="btn btn-sm btn-primary">ajouter</a>
 
 

@@ -1,4 +1,4 @@
-﻿﻿<footer>
+﻿﻿﻿<footer>
 
     <div id="footer">
         <p><span>Remerciements à : José, Cindy, Sarah et Julien pour la vie du site internet depuis sa création
@@ -37,7 +37,6 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
-<script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
 
     var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate','LocalStorageModule','ngResource','ngStorage']);
@@ -46,10 +45,22 @@
             .setPrefix('yourAppName');
     });
 
+    app.factory("DataService", function () {
+
+              var myCart = new shoppingCart("AngularStore");
+        return {
+
+            cart: myCart
+        };
+    });
+
 	app.provider('$ngCart', function () {
 		this.$get = function () {
 		};
 	})
+
+
+
 
 	app.run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
 
@@ -67,14 +78,12 @@
 		}])
 
 
-
-
-
-	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage,DataService) {
+	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage','DataService', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage,DataService) {
         $scope.ngCart = ngCart;
-
+        $scope.cart = DataService.cart;
 		// create shopping cart
-		var myCart = new myCart("AngularStore");
+
+        var myCart = new shoppingCart("myCart");
 
 
 			$scope.$storage = $localStorage.$default({
@@ -103,7 +112,7 @@
 
         }
 
-        $scope.pizza = [];
+        //$scope.pizza = [];
 		$scope.addItem = function (id, name,  quantity, data) {
 
 			 if (typeof inCart === 'object'){
@@ -146,8 +155,9 @@
     
 </script>
 <script src="<?php echo base_url(); ?>js/service/item.js"></script>
-<script src="<?php echo base_url(); ?>js/service/panier.js"></script>
+<script src="<?php echo base_url(); ?>js/shoppingCart.js"></script>
 <script src="<?php echo base_url(); ?>js/service/Cart.js"></script>
+<script src="<?php echo base_url(); ?>js/service/dataService.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-i18n/angular-locale_fr-fr.js"></script>
 </body>
 </html>
