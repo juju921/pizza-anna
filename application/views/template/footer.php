@@ -1,4 +1,5 @@
-﻿﻿﻿<footer>
+﻿﻿﻿
+<footer>
 
     <div id="footer">
         <p><span>Remerciements à : José, Cindy, Sarah et Julien pour la vie du site internet depuis sa création
@@ -39,7 +40,7 @@
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
 
-    var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate','LocalStorageModule','ngResource','ngStorage']);
+    var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate', 'LocalStorageModule', 'ngResource', 'ngStorage']);
     app.config(function (localStorageServiceProvider) {
         localStorageServiceProvider
             .setPrefix('yourAppName');
@@ -47,60 +48,56 @@
 
     app.factory("DataService", function () {
 
-              var myCart = new shoppingCart("AngularStore");
+        var myCart = new shoppingCart("AngularStore");
         return {
 
             cart: myCart
         };
     });
 
-	app.provider('$ngCart', function () {
-		this.$get = function () {
-		};
-	})
+    app.provider('$ngCart', function () {
+        this.$get = function () {
+        };
+    })
 
 
+    app.run(['$rootScope', 'ngCart', 'ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
+
+        $rootScope.$on('ngCart:change', function () {
+            ngCart.$save();
+        });
+
+        if (angular.isObject(store.get('cart'))) {
+            ngCart.$restore(store.get('cart'));
+
+        } else {
+            ngCart.init();
+        }
+
+    }])
 
 
-	app.run(['$rootScope', 'ngCart','ngCartItem', 'store', function ($rootScope, ngCart, ngCartItem, store) {
-
-			$rootScope.$on('ngCart:change', function(){
-				ngCart.$save();
-			});
-
-			if (angular.isObject(store.get('cart'))) {
-				ngCart.$restore(store.get('cart'));
-
-			} else {
-				ngCart.init();
-			}
-
-		}])
-
-
-	app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout','$http','localStorageService','ngCart','$localStorage','DataService', function ($rootScope, $scope, Flash, $timeout,$http,localStorageService,ngCart,$localStorage,DataService) {
+    app.controller('MainCtrl', ['$rootScope', '$scope', 'Flash', '$timeout', '$http', 'localStorageService', 'ngCart', '$localStorage', 'DataService', function ($rootScope, $scope, Flash, $timeout, $http, localStorageService, ngCart, $localStorage, DataService) {
         $scope.ngCart = ngCart;
         $scope.cart = DataService.cart;
-		// create shopping cart
+        // create shopping cart
 
         var myCart = new shoppingCart("myCart");
 
 
-			$scope.$storage = $localStorage.$default({
-			"notes": []
-		});
+        $scope.$storage = $localStorage.$default({
+            "notes": []
+        });
 
 
-
-
-		$scope.success = function () {
+        $scope.success = function () {
             var message = '<strong>votre pizza</strong> ' +
-                  'à été ajouté au patnier';
+                'à été ajouté au patnier';
             Flash.create('success', message);
         };
 
         $scope.pizzas = [];
-       $http.get('<?php echo site_url('site/get_list');?>').success(function($data){
+        $http.get('<?php echo site_url('site/get_list');?>').success(function ($data) {
             $scope.pizzas = $data;
         });
 
@@ -113,29 +110,29 @@
         }
 
         //$scope.pizza = [];
-		$scope.addItem = function (id, name,  quantity, data) {
+       /* $scope.addItem = function (id, name, quantity, data) {
 
-			 if (typeof inCart === 'object'){
-				//Update quantity of an item if it's already in the cart
-				inCart.setQuantity(quantity, false);
-				$rootScope.$broadcast('ngCart:itemUpdated', inCart);
-			} else {
-				$scope.$storage.notes.push({
-					"id": id,
-					"name": name,
-					"qt": quantity,
-					"data": data
-				});
+            if (typeof inCart === 'object') {
+                //Update quantity of an item if it's already in the cart
+                inCart.setQuantity(quantity, false);
+                $rootScope.$broadcast('ngCart:itemUpdated', inCart);
+            } else {
+                $scope.$storage.notes.push({
+                    "id": id,
+                    "name": name,
+                    "qt": quantity,
+                    "data": data
+                });
 
-				$scope.pizzas = $localStorage.notes;
-			}
-			$rootScope.$broadcast('ngCart:change', {});
-		};
+                $scope.pizzass = $localStorage.notes;
+            }
+            $rootScope.$broadcast('ngCart:change', {});
+        };*/
 
-        $scope.deletePizza = function(noms){
+       /* $scope.deletePizza = function (noms) {
             console.log(noms);
             var index = $scope.pizza.indexOf(noms)
-            $scope.pizza.splice(index,1);
+            $scope.pizza.splice(index, 1);
         };
 
         $scope.saveItems = function (pizza) {
@@ -145,14 +142,14 @@
             }
         };
 
-        $scope.deleteThispizza =  function (id) {
+        $scope.deleteThispizza = function (id) {
             return localStorageService.remove(id);
 
 
-        };
+        };*/
 
-	}]);
-    
+    }]);
+
 </script>
 <script src="<?php echo base_url(); ?>js/service/item.js"></script>
 <script src="<?php echo base_url(); ?>js/shoppingCart.js"></script>

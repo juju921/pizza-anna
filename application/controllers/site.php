@@ -84,11 +84,12 @@ class Site extends Ci_Controller
 		//$this->input->post('idpiz')
 		$data = array(
 			'id' => $this->input->post('idpiz'),
-			'qty' => 1,
-			'quantity' => $this->input->post('quantity'),
+			//'qty' => 1,
+			'qty' => $this->input->post('quantity'),
 			'price' => $pizza->prix,
 			'name' => $pizza->noms
 		);
+		//var_dump($this->cart);
 
 		$this->cart->insert($data);
 		redirect('commander');
