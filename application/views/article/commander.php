@@ -26,7 +26,7 @@
                         </select>
                         <!--<a class="btn btn-sm btn-primary macommande">Ajouter</a>-->
                         <input TYPE="submit" NAME="nom" VALUE="Ajouter"
-                               ng-click="cart.addItem(pizza.id,pizza.noms, pizza.prix, q)"
+                               ng-click="cart.addItem(pizza.id,pizza.noms, pizza.prix, q);success();"
                                class="btn btn-sm btn-primary">
                         <a href="#"
                            ng-click="addItem(pizza.id,pizza.noms, pizza.prix, q, data); success(); cart.addItem(pizza.id,pizza.noms, pizza.prix, q);"

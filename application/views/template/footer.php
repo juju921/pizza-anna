@@ -1,4 +1,4 @@
-﻿﻿﻿
+﻿﻿﻿﻿
 <footer>
 
     <div id="footer">
@@ -34,12 +34,10 @@
 <script src="<?php echo base_url(); ?>node_modules/angular-flash-alert/dist/angular-flash.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-sanitize/angular-sanitize.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/ngstorage/ngStorage.js"></script>
-
 <script src="<?php echo base_url(); ?>node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="<?php echo base_url(); ?>node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
 <script src="<?php echo base_url(); ?>js/app.js"></script>
 <script>
-
     var app = angular.module('sampleapp', ['angularModalService', 'ngFlash', 'ngAnimate', 'LocalStorageModule', 'ngResource', 'ngStorage']);
     app.config(function (localStorageServiceProvider) {
         localStorageServiceProvider
@@ -109,44 +107,7 @@
 
         }
 
-        //$scope.pizza = [];
-       /* $scope.addItem = function (id, name, quantity, data) {
 
-            if (typeof inCart === 'object') {
-                //Update quantity of an item if it's already in the cart
-                inCart.setQuantity(quantity, false);
-                $rootScope.$broadcast('ngCart:itemUpdated', inCart);
-            } else {
-                $scope.$storage.notes.push({
-                    "id": id,
-                    "name": name,
-                    "qt": quantity,
-                    "data": data
-                });
-
-                $scope.pizzass = $localStorage.notes;
-            }
-            $rootScope.$broadcast('ngCart:change', {});
-        };*/
-
-       /* $scope.deletePizza = function (noms) {
-            console.log(noms);
-            var index = $scope.pizza.indexOf(noms)
-            $scope.pizza.splice(index, 1);
-        };
-
-        $scope.saveItems = function (pizza) {
-            if (localStorage !== null && JSON !== null) {
-                localStorage['moncadie_items'] = JSON.stringify($scope.pizza);
-
-            }
-        };
-
-        $scope.deleteThispizza = function (id) {
-            return localStorageService.remove(id);
-
-
-        };*/
 
     }]);
 
