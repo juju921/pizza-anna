@@ -39,10 +39,10 @@
                 <div class="span6">
                     <div id="commande">
                         <div class="rubandcommande"><h2>Votre Commande</h2>
-                            total :{{cart.getTotalCount()}}
                             <?php echo form_open('site/add/'); ?>
-                            <ul ng-repeat="item in ngStorage-notes">
-                                <span>{{ item.nom }}</span>
+                            <ul ng-repeat="item in cart.items | orderBy:'name'">
+                                <span>{{ item.name }}</span>
+                                <span>{{item.quantity}}</span>
                             </ul>
                             <ul ng-repeat="item in ngCart.getCart().items track by $index"
                                 class="col-md-7 col-sm-12 text-left">
@@ -56,9 +56,10 @@
 									<span ng-click="ngCart.removeItemById(item.getId())"
                                           class="icon-white icon-trash"></span></span>
                                 <pre>{{item.getQuantity()}}</pre>
+
                             </ul>
                             </form>
-                            <span>{{ ngCart.totalCost() | currency }}</span>
+                             <span>Total à payer : {{cart.getTotalPrice()| currency}}</span>
                             <ul>
                                 <li ng-repeat="item in data">
                                     <div>

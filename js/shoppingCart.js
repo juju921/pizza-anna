@@ -48,7 +48,7 @@ shoppingCart.prototype.saveItems = function () {
 
 // adds an item to the cart
 shoppingCart.prototype.addItem = function (id, name, price, quantity) {
-    console.log(id, name, price, quantity);
+    //console.log(id, name, price, quantity);
 	quantity = this.toNumber (quantity);
 	if (quantity != 0) {
 

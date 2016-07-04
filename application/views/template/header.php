@@ -13,9 +13,6 @@
     <link type="text/css" rel="stylesheet"
           href="<?php echo base_url(); ?>node_modules/angular-flash-alert/dist/angular-flash.min.css"/>
     <meta name="description" content="">
-    <meta name="author" content="">
-
-
     <!-- Le styles -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script language='javascript'>
